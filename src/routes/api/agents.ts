@@ -9,32 +9,23 @@ interface AgentResponse {
      issueId: number
 }
 
-
-
-
 router.post('/assigntoagent/:id/:agentId', (req, res) => {
      new Promise((resolve, reject) => {
           try {
                let issueId: number = +req.params.id
                let agentId: number = +req.params.agentId
-
-               console.log('agentId = ' + agentId)
-               
-               let assignedAgent = agentId > 0 ? utils.getAgent(agentId) : utils.getFirstAvailableAgent() 
-
-               console.log(assignedAgent)
+               let assignedAgent = agentId > 0 ? utils.getAgent(agentId) : utils.getFirstAvailableAgent();
 
                if(assignedAgent){
                     utils.insertTask(assignedAgent.id, issueId)
                }
-
                resolve({agent: assignedAgent, issueId})
+               
           } catch (error) {
                reject(error)
           }
      }).then(result => {
           let response = result as AgentResponse
-          console.log(response)
           if(response.agent){
                res.json(`Issue with Id = ${response.issueId} assigned to ${response.agent.name}`)
           } else {
