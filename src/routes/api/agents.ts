@@ -50,7 +50,6 @@ router.get('/agentstask', (req, res) => {
      res.json(utils.getAgentsTasks())
 })
 
-
 router.get('/tasks', (req, res) => {
      res.json(utils.readAlltasks().filter(val => !val.finishedDate))
 })
