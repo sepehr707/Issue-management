@@ -43,7 +43,7 @@ Quick overview about the project:
         *PARAMS: No Params requires
         *Description: This will show unassigned issues names.
 
-    -Unassigned issues:
+    -Get unresolved tasks:
         *URL: localhost:3000/api/agents/tasks
         *METHOD: GET
         *BODY: No body requires
