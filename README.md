@@ -34,11 +34,18 @@ Quick overview about the project:
         *METHOD: GET
         *BODY: No body requires
         *PARAMS: No Params requires
-        *Description: This will show that agents are resolving which issue and which agents are free
+        *Description: This will show that agents are resolving which issue and which agents are free.
         
     -Unassigned issues:
         *URL: localhost:3000/api/issues/unassignedissues
         *METHOD: GET
         *BODY: No body requires
         *PARAMS: No Params requires
-        *Description: This will show unassigned issues names
+        *Description: This will show unassigned issues names.
+
+    -Unassigned issues:
+        *URL: localhost:3000/api/agents/tasks
+        *METHOD: GET
+        *BODY: No body requires
+        *PARAMS: No Params requires
+        *Description: This will show the tasks that are not resolved yet. You can find the task id here to use it in finishing the issue.
