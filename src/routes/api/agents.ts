@@ -20,7 +20,7 @@ router.post('/assigntoagent/:id/:agentId', (req, res) => {
                     utils.insertTask(assignedAgent.id, issueId)
                }
                resolve({agent: assignedAgent, issueId})
-               
+
           } catch (error) {
                reject(error)
           }
@@ -48,6 +48,11 @@ router.post('/taskdone/:id', (req, res) => {
 
 router.get('/agentstask', (req, res) => {
      res.json(utils.getAgentsTasks())
+})
+
+
+router.get('/tasks', (req, res) => {
+     res.json(utils.readAlltasks().filter(val => !val.finishedDate))
 })
 
 
