@@ -40,8 +40,8 @@ describe('Create new task', () => {
 describe('Assign Agent to Issue', () => {
      it('Assign Agent to Issue', async () => {
           const result = await request(app).post('/api/issues/assignissue/1')
-
-          expect(result.status).toEqual(307 || 200)
+          const resultStatusIsCorrect =  result.status === 307 || result.status === 200
+          expect(resultStatusIsCorrect).toEqual(true)
      })
 })
 
@@ -56,7 +56,9 @@ describe('Fetch unassigned issues', () => {
 describe('Task is done', () => {
      it('Post Taskdone', async () => {
           const result = await request(app).post('/api/agents/taskdone/1')
-          expect(result.status).toEqual(200)
+          const resultStatusIsCorrect =  result.status === 307 || result.status === 200
+          expect(resultStatusIsCorrect).toEqual(true)
+
      })
 })
 

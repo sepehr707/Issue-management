@@ -1,2 +1,6 @@
 node_modules
 dist
+src/mock/issues.json
+src/mock/tasks.json
+src/mock-test/issues.json
+src/mock-test/tasks.json
