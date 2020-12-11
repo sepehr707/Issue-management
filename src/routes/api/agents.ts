@@ -27,9 +27,9 @@ router.post('/assigntoagent/:id/:agentId', (req, res) => {
      }).then(result => {
           let response = result as AgentResponse
           if(response.agent){
-               res.json(`Issue with Id = ${response.issueId} assigned to ${response.agent.name}`)
+               res.status(200).json(`Issue with Id = ${response.issueId} assigned to ${response.agent.name}`)
           } else {
-               res.json(`No agent available to be assigned for issue with Id = ${response.issueId} `)
+               res.status(200).json(`No agent available to be assigned for issue with Id = ${response.issueId} `)
           }
      }).catch(err => res.json(err))
      

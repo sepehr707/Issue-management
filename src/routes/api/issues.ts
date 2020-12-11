@@ -23,25 +23,23 @@ router.post('/', (req, res) => {
           }
      })
      .then(result => res.redirect(307,`/api/agents/assigntoagent/${result}/0`))
-     .catch(err => res.json(err))
+     .catch(err => res.status(500).json(err))
 })
 
 router.post('/assignissue/:agentId', (req, res) => {
      let agentId = req.params.agentId
      let issueId = utils.getFirstUnassignedIssueId()
-
-     console.log({agentId, issueId})
      
      if(issueId > 0){
           res.redirect(307,`/api/agents/assigntoagent/${issueId}/${agentId}`)
      } else {
-          res.json('No issue to assign')
+          res.status(200).json('No issue to assign')
      }
 
 
 })
 
-router.get('/unassignedissues', (req, res) => {
+router.get('/unassignedissues', (req , res) => {
      res.json(utils.getUnassignedIssues())
 })
 

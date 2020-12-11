@@ -4,7 +4,8 @@ import { Issue } from "../models/Issue";
 import fs from "fs";
 import path from "path";
 
-var fileAddress = path.join(__dirname, '../../','src','mock')
+var folderName = process.env.MOCK ?? 'mock-test'
+var fileAddress = path.join(__dirname, '../../','src', folderName as string)
 
 var agentsFile = 'agents.json'
 var tasksFile = 'tasks.json'
