@@ -72,8 +72,6 @@ export const writeToIssues = (issues: Issue[]) => {
 export const getFirstAvailableAgent = () : Agent | null => {
 
      let tasks = readAlltasks()
-     console.log(tasks)
-
      let notAvailableAgents = readAlltasks().filter(val => !val.finishedDate).map(val => val.agentId)
 
      let availableAgents = readAllAgents().filter(val => !notAvailableAgents.includes(val.id))
