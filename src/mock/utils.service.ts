@@ -14,6 +14,34 @@ var agentsAddress = path.join(fileAddress, agentsFile)
 var tasksAddress = path.join(fileAddress, tasksFile);
 var issuesAddress = path.join(fileAddress, issueFile)
 
+interface AgentResponse {
+     agent: Agent | null,
+     issueId: number
+}
+
+export const assignToAgent = (issueId: number, agentId: number,res: any) => {
+     new Promise((resolve, reject) => {
+          try {
+               let assignedAgent = agentId > 0 ? getAgent(agentId) : getFirstAvailableAgent();
+
+               if(assignedAgent){
+                    insertTask(assignedAgent.id, issueId)
+               }
+               resolve({agent: assignedAgent, issueId})
+
+          } catch (error) {
+               reject(error)
+          }
+     }).then(result => {
+          let response = result as AgentResponse
+          if(response.agent){
+               res.json(`Issue with Id = ${response.issueId} assigned to ${response.agent.name}`)
+          } else {
+               res.json(`No agent available to be assigned for issue with Id = ${response.issueId} `)
+          }
+     }).catch(err => res.json(err))
+     
+}
 
 export const insertTask = (agentId: number, issueId: number) => {
      let tasks = readAlltasks()

@@ -10,29 +10,9 @@ interface AgentResponse {
 }
 
 router.post('/assigntoagent/:id/:agentId', (req, res) => {
-     new Promise((resolve, reject) => {
-          try {
-               let issueId: number = +req.params.id
-               let agentId: number = +req.params.agentId
-               let assignedAgent = agentId > 0 ? utils.getAgent(agentId) : utils.getFirstAvailableAgent();
-
-               if(assignedAgent){
-                    utils.insertTask(assignedAgent.id, issueId)
-               }
-               resolve({agent: assignedAgent, issueId})
-
-          } catch (error) {
-               reject(error)
-          }
-     }).then(result => {
-          let response = result as AgentResponse
-          if(response.agent){
-               res.json(`Issue with Id = ${response.issueId} assigned to ${response.agent.name}`)
-          } else {
-               res.json(`No agent available to be assigned for issue with Id = ${response.issueId} `)
-          }
-     }).catch(err => res.json(err))
-     
+     let issueId: number = +req.params.id
+     let agentId: number = +req.params.agentId
+     utils.assignToAgent(issueId, agentId,res)
 })
 
 router.post('/taskdone/:id', (req, res) => {

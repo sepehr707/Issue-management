@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
                reject(error)
           }
      })
-     .then(result => res.redirect(307,`/api/agents/assigntoagent/${result}/0`))
+     .then(result => utils.assignToAgent(result as number, 0, res))
      .catch(err => res.json(err))
 })
 
