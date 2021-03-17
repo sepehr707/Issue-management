@@ -9,7 +9,6 @@ const app = express()
 
 app.use(bodyParser.json())
 
-
 // fs.writeFile(path.join(path.dirname(__dirname),'src/mock','mock.json'),JSON.stringify(r), err => {
 //   if(err){
 //     console.log(err)
