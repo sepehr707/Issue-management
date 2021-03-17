@@ -43,6 +43,16 @@ export const assignToAgent = (issueId: number, agentId: number,res: any) => {
      
 }
 
+export const assignIssue = (agentId: number, res: any) => {
+     let issueId = getFirstUnassignedIssueId()
+
+     if(issueId > 0){
+          assignToAgent(issueId, agentId, res)
+     } else {
+          res.json('No issue to assign')
+     }
+}
+
 export const insertTask = (agentId: number, issueId: number) => {
      let tasks = readAlltasks()
      

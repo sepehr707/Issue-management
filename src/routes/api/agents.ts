@@ -20,7 +20,7 @@ router.post('/taskdone/:id', (req, res) => {
      let agentId = utils.finishTask(taskId)
 
      if(agentId > 0){
-          res.redirect(307,`/api/issues/assignissue/${agentId}`)
+          utils.assignIssue(agentId, res)
      } else {
           res.json('Undefined or finished task')
      }
